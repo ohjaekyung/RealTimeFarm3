@@ -1,0 +1,246 @@
+//*{margin:0;padding:0;-webkit-tap-highlight-color:transparent; box-sizing: border-box;  -webkit-overflow-scrolling: touch; }
+*{margin:0;padding:0;-webkit-tap-highlight-color:transparent; box-sizing: border-box;}
+//body,th,td,input,select,textarea,button{font-size:15px; line-height:1.5; font-family:'Noto Sans CJK KR', sans-serif; outline:none;}
+fieldset,img{border:0}
+dl,ul,ol,menu,li{list-style:none}
+input,select,textarea,button{vertical-align:middle}
+button{cursor:pointer;border:none;}
+//a{color:#000;text-decoration:none}
+address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
+input,textarea{outline:none;-webkit-appearance:none;-webkit-border-radius:0}
+select{outline:none; -webkit-appearance:none;}
+textarea{resize:none;}
+button{outline:none;}
+ul li{list-style: none;}
+
+@mixin animate_pound() {
+  animation: pound .8s infinite;
+  transform-origin: center;
+  @keyframes pound {
+    from, to { transform: none; }
+    50% { transform: scale(1.09); }
+  }
+  @-webkit-keyframes pound {
+    from, to { transform: none; }
+    50% { transform: scale(1.09); }
+  }
+}
+
+
+html,
+body {
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+}
+
+//
+//
+//html {
+//  //scroll-behavior: smooth;
+//  height: 100vh;
+//  overflow: hidden;
+//  //overscroll-behavior-y: none;
+//}
+
+main {
+  width: 100%;
+  height: 100vh;
+  perspective: 1px;
+  //-webkit-overflow-scrolling: touch ;
+  transform-style: preserve-3d;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.test {
+  background: rgba(0,0,0,0.9);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+}
+
+.blur {
+  background: rgba(0,0,0,0.4);
+  //position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 50;
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+  -webkit-filter: url(#blur-filter);
+  filter: url(#blur-filter);
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.blur-svg {
+  display: none;
+}
+
+.body_img{
+  display: flex;
+  flex: 1 0 auto;
+  position: relative;
+  z-index: -1;
+  height: 100vh;
+  width: 100%;
+  .icon_area {
+    height: 100vh;
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+
+
+  &.step1 {
+    //background: url(../img/step1.jpg) no-repeat center;
+    background: url(../img/step1_bg.jpg) no-repeat center;
+    background-size: cover;
+    height: 100%;
+    .plant {
+      background-image: url("~@/assets/img/step1_icon.png");
+      background-size: contain;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      width: 125px;
+      height: 125px;
+      @include animate_pound();
+
+    }
+    .etc {
+      display: none;
+    }
+  }
+  &.step2 {
+    .icon_area {
+      align-items:unset;
+    }
+    background: url(../img/night_bg.jpg) no-repeat center;
+    background-size: cover;
+    .plant {
+      position: absolute;
+      top: 50%;
+      width: 125px;
+      height: 200px;
+      content:url("~@/assets/img/step2_icon.png");
+    }
+    .etc {
+      display: inline-flex;
+      position: sticky;
+      -webkit-position: sticky;
+      order: -1;
+      -webkit-order: -1;
+      flex: 0 0 57px;
+      // flex: 0 0 57px;
+      left: 10%;
+      top: -20%;
+      width: 90px;
+      height: 90px;
+      margin-left: -100%;
+      margin-top: 20px;
+      background-image: url("~@/assets/img/moon.png");
+      background-size: contain;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      @include animate_pound();
+    }
+  }
+  &.step3 {
+    background: url(../img/step5.jpg) no-repeat center;
+    background-size: cover;
+    .plant {
+      @include animate_pound();
+      width: 125px;
+      height: 300px;
+      content:url("~@/assets/img/step3_icon.png");
+    }
+    .etc {
+      display: none;
+    }
+  }
+  &.step4 {
+    background: url(../img/step5.jpg) no-repeat center;
+    background-size: cover;
+    .plant {
+      @include animate_pound();
+      width: 125px;
+      height: 125px;
+      content:url("~@/assets/img/step4_icon.png");
+    }
+  }
+  transform: translateZ(-1px) scale(2);
+}
+.info_box{
+  position: relative;
+  width: 100%;
+  height: 48%;
+  background: url(../img/info_box.png) no-repeat top left;
+  background-size: cover;
+}
+.info_section{
+  width: 100%;
+  color:#707070;
+  text-align: center;
+  .contents {
+    margin-top: 37px;
+    display: inline-block;
+  }
+  .img_box {
+    vertical-align: bottom;
+    width: 19%;
+    &.temperature {
+      width: 15%;
+    }
+    img {
+      width: 100%;
+    }
+    display: inline-block;
+  }
+  .text_box {
+    margin-left: 3px;
+    display: inline-block;
+    text-align: left;
+    .name {
+      display: block;
+      padding-top:20px;
+      font-size: 1em;
+    }
+    .value {
+      font-size: 2em;
+    }
+  }
+}
+
+.condition_box {
+  text-align: center;
+  margin-top: 40px;
+  .condition_text_box {
+    display: table;
+    margin: auto;
+    width: 75%;
+    height: 100px;
+    padding: 10px;
+    //border: 0px solid #707070;
+    border-radius: 3px;
+    -moz-box-shadow: 2px 2px 2px 2px rgba(194, 194, 194, 0.98);
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(194, 194, 194, 0.98);
+    box-shadow: 2px 2px 2px 2px rgba(194, 194, 194, 0.98);
+    span {
+      font-size: 1em;
+      color: #707070;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
+body.scroll_lock {
+  overflow: hidden;
+}
